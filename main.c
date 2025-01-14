@@ -204,6 +204,9 @@ int main(void) {
 	putch(7);										// Startup beep
 	editHistoryInit();								// Initialise the command history
 
+	// Initialize communication with RunCPM
+	mos_api_runcpm_init();
+
 	// Load the autoexec.bat config file
 	//
 	#if enable_config == 1
@@ -228,6 +231,9 @@ int main(void) {
 			printf("Escape\n\r");
 		}
 	}
+
+	// Deinitialize communication with RunCPM before exiting
+	mos_api_runcpm_deinit();
 
 	return 0;
 }
